@@ -1,0 +1,127 @@
+{
+  "$schema": "https://raw.githubusercontent.com/cursorinsight/config-schema/main/schema.json",
+  "projectType": "fullstack",
+  "description": "Production-grade fullstack project using FastAPI, Next.js and Supabase. Minimalistic, secure, and clean architecture.",
+  "meta": {
+    "author": "Dein Name oder Firma",
+    "license": "MIT",
+    "created": "2025-05-16",
+    "keywords": ["supabase", "fastapi", "nextjs", "fullstack", "cursor"],
+    "repository": "https://github.com/deinuser/deinprojekt",
+    "homepage": "https://deine-domain.com"
+  },
+  "backend": {
+    "language": "python",
+    "framework": "fastapi",
+    "root": "backend",
+    "addHeaderToScripts": true,
+    "logDirectory": "logs",
+    "logFilePerScript": true,
+    "logFileSameNameAsScript": true,
+    "headerTemplate": [
+      "File: {relativePath}",
+      "Description: {description}",
+      "Author: {author}",
+      "License: MIT",
+      "-----------------------"
+    ],
+    "envFile": "env.env",
+    "envSampleFile": "sample.env",
+    "envAutoSyncSample": true,
+    "requirements": {
+      "generateRequirements": true,
+      "minimizeDependencies": true,
+      "preferLatestVersions": true
+    },
+    "codingStyle": {
+      "optimizeForClarity": true,
+      "avoidOverengineering": true,
+      "noUnnecessaryHelpers": true,
+      "useOnlyWhatIsNeeded": true,
+      "minimalistLogging": true
+    },
+    "venv": {
+      "autoCreate": true,
+      "enforce": true,
+      "name": ".venv"
+    }
+  },
+  "frontend": {
+    "framework": "nextjs",
+    "router": "app",
+    "language": "typescript",
+    "root": "frontend",
+    "envFile": ".env.local",
+    "i18n": {
+      "enabled": true,
+      "defaultLocale": "de",
+      "locales": ["de", "en"]
+    }
+  },
+  "database": {
+    "type": "supabase",
+    "migrationsFolder": "database",
+    "migrationFilePattern": "^\\d{2}_.*\\.sql$",
+    "manualExecutionRequired": true,
+    "connection": {
+      "method": "supabase_client",
+      "client": "supabase-py",
+      "enforceSupabaseOnly": true,
+      "envVariable": "SUPABASE_URL"
+    }
+  },
+  "api": {
+    "style": "restful",
+    "docPath": "/docs",
+    "schemaPath": "/openapi.json",
+    "versioning": "url",
+    "includeExamplePayloads": true
+  },
+  "logging": {
+    "enabled": true,
+    "format": "%(asctime)s %(levelname)s: %(message)s",
+    "handler": "RotatingFileHandler",
+    "maxBytes": 1048576,
+    "backupCount": 5
+  },
+  "security": {
+    "productionReady": true,
+    "enforceEnvUsage": true,
+    "bestPractices": true
+  },
+  "documentation": {
+    "generateProjectDoc": true,
+    "projectDocFile": "docs/project.md",
+    "readmeFile": "README.md",
+    "updateOnScriptChange": true,
+    "includeStructure": true,
+    "includeEndpoints": true,
+    "includeScripts": true,
+    "includeMigrations": true,
+    "includeRequirements": true,
+    "autoUpdateReadme": true
+  },
+  "testing": {
+    "backend": {
+      "framework": "pytest",
+      "testDirectory": "backend/tests"
+    },
+    "frontend": {
+      "framework": "jest",
+      "testDirectory": "frontend/__tests__"
+    },
+    "includeInDocs": true
+  },
+  "conventions": {
+    "structure": ["backend", "frontend", "database", "logs", "docs"],
+    "sqlMigrationOrder": "numeric"
+  },
+  "ignore": [
+    "node_modules",
+    ".venv",
+    ".cursorignore",
+    ".DS_Store",
+    "*.pyc",
+    "__pycache__"
+  ]
+}
